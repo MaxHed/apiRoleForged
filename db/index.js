@@ -1,11 +1,11 @@
 // const { Sequelize } = require('sequelize');
 const {Sequelize} = require('sequelize');
 const { UserSchema } = require('./models/user');
+const { RaceSchema } = require('./models/race');
+const { JobSchema } = require('./models/job');
 const { CharacterSchema } = require('./models/character');
 const { PortraitSchema } = require('./models/portrait');
 const { StatSchema } = require('./models/stats');
-const { RaceSchema } = require('./models/race');
-const { JobSchema } = require('./models/job');
 const { PurseSchema } = require('./models/purse');
 const { InventorySchema } = require('./models/inventory');
 const { ItemSchema } = require('./models/item');
@@ -43,11 +43,11 @@ async function setup() {
 
     //  Importation des schémas
     const User = sequelize.define('User', UserSchema);
+    const Race = sequelize.define('Race', RaceSchema);
+    const Job = sequelize.define('Job', JobSchema);
     const Character = sequelize.define('Character', CharacterSchema);
     const Portrait = sequelize.define('Portait', PortraitSchema);
     const Stats = sequelize.define('Stats', StatSchema);
-    const Race = sequelize.define('Race', RaceSchema);
-    const Job = sequelize.define('Job', JobSchema);
     const Purse = sequelize.define('Purse', PurseSchema);
     const Inventory = sequelize.define('Inventory', InventorySchema);
     const Item = sequelize.define('Item', ItemSchema);
@@ -82,23 +82,23 @@ async function setup() {
     Character.hasOne(Inventory, { foreignKey: { allowNull: false } });
     Inventory.belongsTo(Character);
 
-    Inventory.hasMany(Item, { through: Item_In_Inventory });
-    Item.belongsToMany(Inventory, { through: Item_In_Inventory });
+    Inventory.belongsToMany(Item, { through: 'Item_In_Inventory' });
+    Item.belongsToMany(Inventory, { through: 'Item_In_Inventory' });
 
     Campaign.hasMany(Session, { foreignKey: { allowNull: false } });
     Session.belongsTo(Campaign);
 
-    Session.belongsToMany(Character, { through: Group });
-    Character.belongsToMany(Session, { through: Group });
+    Session.belongsToMany(Character, { through: 'Group' });
+    Character.belongsToMany(Session, { through: 'Group' });
 
     //  On synchronise les modèles
     await Promise.all([
         User.sync(),
+        Race.sync(),
+        Job.sync(),
         Character.sync(),
         Portrait.sync(),
         Stats.sync(),
-        Race.sync(),
-        Job.sync(),
         Purse.sync(),
         Inventory.sync(),
         Item.sync(),
