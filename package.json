@@ -1,7 +1,7 @@
 {
-  "name": "navybattleapi",
+  "name": "apiroleforged",
   "version": "1.0.0",
-  "description": "API Bataille Naval",
+  "description": "API Role Forged",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/Soidrik/navybattleapi.git"
+    "url": "git+ssh://git@github.com:MaxHed/apiRoleForged.git"
   },
-  "author": "Boris Delacour",
+  "author": "Maxence Hedouin",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/Soidrik/navybattleapi/issues"
+    "url": "https://github.com/MaxHed/apiRoleForged/issues"
   },
-  "homepage": "https://gitlab.com/Soidrik/navybattleapi#readme",
+  "homepage": "https://github.com/MaxHed/apiRoleForged#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
