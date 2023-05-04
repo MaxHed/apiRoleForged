@@ -54,14 +54,16 @@ async function setup() {
     const Campaign = sequelize.define('Campaign', CampaignSchema);
     const Session = sequelize.define('Session', SessionSchema);
     const Map = sequelize.define('Map', MapSchema);
+    const Group = sequelize.define('Group', {});
+    const Items_In_Inventory = sequelize.define('Items_In_Inventory', {});
 
-    User.hasMany(Character);
+    User.hasMany(Character, { foreignKey: { allowNull: false } });
     Character.belongsTo(User);
 
-    User.hasMany(Campaign);
+    User.hasMany(Campaign, { foreignKey: { allowNull: false } });
     Campaign.belongsTo(User);
 
-    User.hasMany(Map);
+    User.hasMany(Map, { foreignKey: { allowNull: false } });
     Map.belongsTo(User);
 
     Character.hasOne(Portrait, { foreignKey: { allowNull: false } });
@@ -82,14 +84,14 @@ async function setup() {
     Character.hasOne(Inventory, { foreignKey: { allowNull: false } });
     Inventory.belongsTo(Character);
 
-    Inventory.belongsToMany(Item, { through: 'Item_In_Inventory' });
-    Item.belongsToMany(Inventory, { through: 'Item_In_Inventory' });
+    Inventory.belongsToMany(Item, { through: Items_In_Inventory });
+    Item.belongsToMany(Inventory, { through: Items_In_Inventory });
 
     Campaign.hasMany(Session, { foreignKey: { allowNull: false } });
     Session.belongsTo(Campaign);
 
-    Session.belongsToMany(Character, { through: 'Group' });
-    Character.belongsToMany(Session, { through: 'Group' });
+    Session.belongsToMany(Character, { through: Group });
+    Character.belongsToMany(Session, { through: Group });
 
     //  On synchronise les modèles
     await Promise.all([
@@ -105,6 +107,8 @@ async function setup() {
         Campaign.sync(),
         Session.sync(),
         Map.sync(),
+        Group.sync(),
+        Items_In_Inventory.sync(),
     ]);
 
     return {
@@ -120,6 +124,8 @@ async function setup() {
         Campaign,
         Session,
         Map,
+        Group,
+        Items_In_Inventory,
     };
 }
 
