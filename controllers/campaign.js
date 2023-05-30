@@ -1,7 +1,7 @@
 module.exports = function ({ Campaign }) {
 
     const getCampaign = async (req, res) => {
-        const campaign = await Campaign.findOne({ where: { id: req.id, UserId: req.UserId } })
+        const campaign = await Campaign.findOne({ where: { id: req.id } })
         
         res.json(campaign);
     }
