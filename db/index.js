@@ -46,7 +46,7 @@ async function setup() {
     const Race = sequelize.define('Race', RaceSchema);
     const Job = sequelize.define('Job', JobSchema);
     const Character = sequelize.define('Character', CharacterSchema);
-    const Portrait = sequelize.define('Portait', PortraitSchema);
+    const Portrait = sequelize.define('Portrait', PortraitSchema);
     const Stats = sequelize.define('Stats', StatSchema);
     const Purse = sequelize.define('Purse', PurseSchema);
     const Inventory = sequelize.define('Inventory', InventorySchema);
