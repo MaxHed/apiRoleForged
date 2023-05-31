@@ -6,7 +6,7 @@ module.exports = function ({ Campaign }) {
         res.json(campaign);
     }
 
-    const getAll = async (req, res) => {
+    const getAllByUserId = async (req, res) => {
         const campaigns = await Campaign.findAll({
             where: { UserId: req.UserId }
         })
@@ -17,6 +17,6 @@ module.exports = function ({ Campaign }) {
 
     return {
         getCampaign,
-        getAll
+        getAllByUserId
     }
 }

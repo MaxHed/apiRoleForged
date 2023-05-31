@@ -6,7 +6,7 @@ module.exports = function ({ Character }) {
         res.json(character);
     }
 
-    const getAll = async (req, res) => {
+    const getAllByUserId = async (req, res) => {
         const characters = await Character.findAll({
             where: { UserId: req.UserId }
         })
@@ -17,6 +17,6 @@ module.exports = function ({ Character }) {
 
     return {
         getCharacter,
-        getAll
+        getAllByUserId
     }
 }
