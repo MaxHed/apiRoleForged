@@ -3,11 +3,11 @@ const express = require('express');
 module.exports = function(models) {
     const app = express();
 
-    const setup = require("../controllers/item");
+    const setup = require("../controllers/job");
 
-    const { getItem, getAll } = setup(models);
+    const { getJob, getAll } = setup(models);
 
-    app.get("/:id", getItem);
+    app.get("/:id", getJob);
     app.get("/list", getAll);
 
     return app;
