@@ -12,7 +12,6 @@ module.exports = function ({ Item }) {
         res.json(items)
     }
     
-
     return {
         getItem,
         getAll

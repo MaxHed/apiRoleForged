@@ -6,7 +6,17 @@ module.exports = function ({ Inventory }) {
         res.json(inventory)
     }
 
+    const getItemsInInventory = async (req, res) => {
+        const inventory = await Inventory.findOne({
+            where: { CharacterId: req.CharacterId },
+            include: [{ model: Item, as: "items" }]
+        })
+
+        res.json(inventory.items)
+    }
+
     return {
-        getInventoryByCharacterId
+        getInventoryByCharacterId,
+        getItemsInInventory
     }
 }
