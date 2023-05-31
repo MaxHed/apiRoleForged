@@ -15,6 +15,8 @@ function init(app, models) {
 
     app.use('/auth',cors(corsOptions), require('./routes/auth')(models));
     app.use('/users',cors(corsOptions), auth ,require('./routes/user')(models));
+    app.use('/characters',cors(corsOptions), auth ,require('./routes/character')(models));
+    app.use('/campaign',cors(corsOptions), auth ,require('./routes/campaign')(models));
 }
 
 module.exports = { init };

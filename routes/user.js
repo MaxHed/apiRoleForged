@@ -1,4 +1,4 @@
-const express = require('express');;
+const express = require('express');
 
 module.exports = function(models) {
     const app = express();
