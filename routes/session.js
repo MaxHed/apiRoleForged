@@ -5,10 +5,11 @@ module.exports = function(models) {
 
     const setup = require("../controllers/session");
 
-    const { getSession, getAllByCampaignId } = setup(models);
+    const { getSession, getAllByCampaignId, getCharactersInSession } = setup(models);
 
     app.get("/:id", getSession);
     app.get("/list", getAllByCampaignId);
+    app.get("/SessionGroup", getCharactersInSession);
 
     return app;
 }
