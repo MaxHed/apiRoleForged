@@ -43,7 +43,5 @@ module.exports = function ({ Character }) {
         getCharacter,
         getAllByUserId,
         create
-
-
     }
 }
