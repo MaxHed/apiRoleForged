@@ -5,10 +5,11 @@ module.exports = function(models) {
 
     const setup = require("../controllers/race");
 
-    const { getRace, getAll } = setup(models);
+    const { getRace, getAll , create} = setup(models);
 
     app.get("/:id", getRace);
-    app.get("/list", getAll);
+    app.get("/", getAll);
+    app.post("/", create);
 
     return app;
 }

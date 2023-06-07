@@ -5,10 +5,11 @@ module.exports = function(models) {
 
     const setup = require("../controllers/character");
 
-    const { getCharacter, getAllByUserId } = setup(models);
+    const { getCharacter, getAllByUserId , create} = setup(models);
 
     app.get("/:id", getCharacter);
-    app.get("/list", getAllByUserId);
+    app.get("/listByUID", getAllByUserId);
+    app.post("/", create);
 
     return app;
 }

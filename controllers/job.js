@@ -11,10 +11,30 @@ module.exports = function ({ Job }) {
 
         res.json(jobs)
     }
+
+    const create = async (req, res) => {
+        const job = new Job({
+            name: req.body.name,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+
+        await job.save().then(() => {
+            res.status(201).json({
+                message: "Classe créée !",
+            })
+        }).catch((error) => {
+            res.status(403).json({
+                error,
+            })
+        }); 
+
+    }
     
 
     return {
         getJob,
-        getAll
+        getAll,
+        create
     }
 }

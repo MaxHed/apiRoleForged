@@ -2,7 +2,7 @@ module.exports = function ({ Character }) {
 
     const getCharacter = async (req, res) => {
         const character = await Character.findOne({ where: { id: req.id } })
-        
+
         res.json(character);
     }
 
@@ -13,10 +13,37 @@ module.exports = function ({ Character }) {
 
         res.json(characters)
     }
-    
+
+    const create = async (req, res) => {
+        const character = new Character({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            playable: req.body.playable,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            UserId: req.UserId,
+            RaceId: req.body.RaceId,
+            JobId: req.body.JobId,
+
+        });
+
+        await character.save().then(() => {
+            res.status(201).json({
+                message: "Personnage créé !",
+            })
+        }).catch((error) => {
+            res.status(403).json({
+                error,
+            })
+        });
+    }
+
 
     return {
         getCharacter,
-        getAllByUserId
+        getAllByUserId,
+        create
+
+
     }
 }

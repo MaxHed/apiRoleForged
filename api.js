@@ -20,6 +20,9 @@ function init(app, models) {
     app.use('/item',cors(corsOptions), auth ,require('./routes/item')(models));
     app.use('/purse',cors(corsOptions), auth ,require('./routes/purse')(models));
     app.use('/campaign',cors(corsOptions), auth ,require('./routes/campaign')(models));
+    app.use('/job',cors(corsOptions), auth ,require('./routes/job')(models));
+    app.use('/race',cors(corsOptions), auth ,require('./routes/race')(models));
+
 }
 
 module.exports = { init };
