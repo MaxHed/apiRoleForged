@@ -38,10 +38,29 @@ module.exports = function ({ Character }) {
         });
     }
 
+    const edit = async (req, res) => {
+        const character = await Character.findOne({ where : { id: req.id } })
+
+        character.first_name = req.body.first_name
+        character.last_name = req.body.last_name
+        character.playable = req.body.playable
+        character.updatedAt = new Date()
+
+        await character.save().then(() => {
+            res.status(201).json({
+                message: "Personnage modifiée !",
+            })
+        }).catch((error) => {
+            res.status(403).json({
+                error,
+            })
+        });
+    }
 
     return {
         getCharacter,
         getAllByUserId,
-        create
+        create,
+        edit
     }
 }
