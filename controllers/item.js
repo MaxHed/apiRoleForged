@@ -36,7 +36,7 @@ module.exports = function ({ Item }) {
     }
 
     const edit = async (req, res) => {
-        const item = Item.findOne({ where: { id: req.id } })
+        const item = Item.findOne({ where: { id: req.body.id } })
 
         item.name = req.body.name
         item.description = req.body.description

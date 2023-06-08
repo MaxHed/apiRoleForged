@@ -32,7 +32,7 @@ module.exports = function ({ Job }) {
     }
 
     const edit = async (req, res) => {
-        const job = await Job.findOne({ where : { id: req.id } })
+        const job = await Job.findOne({ where : { id: req.body.id } })
 
         job.name = req.body.name
         job.updatedAt = new Date()

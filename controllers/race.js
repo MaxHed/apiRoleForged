@@ -32,7 +32,7 @@ module.exports = function ({ Race }) {
     }
 
     const edit = async (req, res) => {
-        const race = Race.findOne({ where: { id: req.id } })
+        const race = Race.findOne({ where: { id: req.body.id } })
 
         race.name = req.body.name
         race.updatedAt = new Date()
