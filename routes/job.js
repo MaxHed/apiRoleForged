@@ -5,11 +5,12 @@ module.exports = function(models) {
 
     const setup = require("../controllers/job");
 
-    const { getJob, getAll, create} = setup(models);
+    const { getJob, getAll, create, edit} = setup(models);
 
     app.get("/:id", getJob);
     app.get("/", getAll);
     app.post("/", create);
+    app.put("/", edit);
 
     return app;
 }

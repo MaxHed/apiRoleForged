@@ -30,11 +30,28 @@ module.exports = function ({ Job }) {
         }); 
 
     }
-    
+
+    const edit = async (req, res) => {
+        const job = await Job.findOne({ where : { id: req.id } })
+
+        job.name = req.body.name
+        job.updatedAt = new Date()
+
+        await job.save().then(() => {
+            res.status(201).json({
+                message: "Metier modifiée !",
+            })
+        }).catch((error) => {
+            res.status(403).json({
+                error,
+            })
+        });
+    }
 
     return {
         getJob,
         getAll,
-        create
+        create,
+        edit
     }
 }

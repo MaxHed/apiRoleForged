@@ -31,11 +31,27 @@ module.exports = function ({ Race }) {
 
     }
 
-                
+    const edit = async (req, res) => {
+        const race = Race.findOne({ where: { id: req.id } })
+
+        race.name = req.body.name
+        race.updatedAt = new Date()
+
+        await race.save().then(() => {
+            res.status(201).json({
+                message: "Race modifiée !",
+            })
+        }).catch((error) => {
+            res.status(403).json({
+                error,
+            })
+        });
+    }         
 
     return {
         getRace,
         getAll,
-        create
+        create,
+        edit
     }
 }
