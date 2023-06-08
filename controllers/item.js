@@ -1,7 +1,7 @@
 module.exports = function ({ Item }) {
 
     const getItem = async (req, res) => {
-        const item = await Item.findOne({ where: { id: req.id } })
+        const item = await Item.findOne({ where: { id: req.params.id } })
         
         res.json(item);
     }

@@ -1,7 +1,7 @@
 module.exports = function ({ Inventory }) {
 
     const getInventoryByCharacterId = async (req, res) => {
-        const inventory = await Inventory.findOne({ where: { CharacterId: req.CharacterId } })
+        const inventory = await Inventory.findOne({ where: { CharacterId: req.params.CharacterId } })
 
         res.json(inventory)
     }

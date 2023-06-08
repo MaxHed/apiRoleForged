@@ -1,7 +1,7 @@
 module.exports = function ({ Job }) {
 
     const getJob = async (req, res) => {
-        const job = await Job.findOne({ where: { id: req.id } })
+        const job = await Job.findOne({ where: { id: req.params.id } })
         
         res.json(job);
     }

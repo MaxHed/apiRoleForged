@@ -1,7 +1,7 @@
 module.exports = function ({ Session }) {
 
     const getSession = async (req, res) => {
-        const session = await Session.findOne({ where: { id: req.id, CampaignId: req.CampaignId } })
+        const session = await Session.findOne({ where: { id: req.params.id } })
         
         res.json(session);
     }

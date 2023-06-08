@@ -1,7 +1,7 @@
 module.exports = function ({ Character }) {
 
     const getCharacter = async (req, res) => {
-        const character = await Character.findOne({ where: { id: req.id } })
+        const character = await Character.findOne({ where: { id: req.params.id } })
 
         res.json(character);
     }

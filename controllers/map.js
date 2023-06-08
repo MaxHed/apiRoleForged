@@ -1,7 +1,7 @@
 module.exports = function ({ Map }) {
 
     const getMap = async (req, res) => {
-        const map = await Map.findOne({ where: { id: req.id } })
+        const map = await Map.findOne({ where: { id: req.params.id } })
         
         res.json(map);
     }
