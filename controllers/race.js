@@ -1,7 +1,8 @@
 module.exports = function ({ Race }) {
 
     const getRace = async (req, res) => {
-        const race = await Race.findOne({ where: { id: param.id } })
+        
+        const race = await Race.findOne({ where: { id: req.params.id } })
         
         res.json(race);
     }
